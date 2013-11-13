@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131113100037) do
+ActiveRecord::Schema.define(version: 20131113105940) do
+
+  create_table "subscriptions", force: true do |t|
+    t.integer "user_id"
+    t.date    "start_date"
+    t.date    "end_date"
+    t.float   "price"
+  end
 
   create_table "users", force: true do |t|
     t.string "name"
