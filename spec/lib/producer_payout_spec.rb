@@ -11,6 +11,17 @@ describe ProducerPayout do
     subject.range.should eq range
   end
 
-  it 'determines the watched videos' do
+  context 'Watched Videos' do
+    before do
+      video = FactoryGirl.create :video
+      vv1   = FactoryGirl.create(:video_view, created_at: Date.parse('01.01.2013'))
+      vv2   = FactoryGirl.create(:video_view, created_at: Date.parse('01.03.2013'))
+    end
+
+    context 'during a given time range' do
+      it 'determines the video hit count' do
+        subject.watched_videos.should include vv1
+      end
+    end
   end
 end
