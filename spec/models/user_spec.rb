@@ -10,5 +10,6 @@ describe User do
 
   it 'has subscriptions' do
     subject.subscriptions << Subscription.create
+    Subscription.last.should == subject.subscriptions.last
   end
 end
