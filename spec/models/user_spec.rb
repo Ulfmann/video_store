@@ -6,7 +6,6 @@ describe User do
 
   it 'has a name' do
     subject.should be_valid
-    User.create().should have(1).error_on :name
   end
 
   it 'has subscriptions' do
