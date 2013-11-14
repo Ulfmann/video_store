@@ -9,7 +9,9 @@ class ProducerPayout
   end
 
   def video_views
-    VideoView.where(created_at: range).to_a
+    VideoView.
+      where(created_at: range).
+      where(video_id: video_ids_for_producer ).to_a
   end
 
   def video_ids_for_producer
@@ -18,8 +20,9 @@ class ProducerPayout
 
   def calculate
     amount = 0
+
     video_views.each do |vv|
-      amount += VideoViewPrice.new.get(vv.id)
+      amount += VideoViewPrice.new(vv.id, producer.id, range).get
     end
 
     return amount
