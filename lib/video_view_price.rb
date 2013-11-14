@@ -2,8 +2,11 @@ class VideoViewPrice
 
   attr_reader :video_view_id
 
-  def get(video_view_id)
+  def initialize(video_view_id)
     @video_view_id = video_view_id
+  end
+
+  def get
     return (value / 4.0)
   end
 
