@@ -4,7 +4,7 @@ class VideoViewPrice
 
   def get(video_view_id)
     @video_view_id = video_view_id
-    return value
+    return (value / 4.0)
   end
 
   def value
