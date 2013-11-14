@@ -10,16 +10,19 @@ class VideoViewPrice
     @range = range
   end
 
-  def get
-    return (value / 4.0)
-  end
-
   def value
-    price_for_subscriptions / video_views_in_range
+
+    amount = 0
+    subscriptions.select do |sub|
+      amount += subscription_view_price(sub)
+      puts amount
+    end
+
+    return amount
   end
 
-  def price_for_subscriptions
-    subscriptions.collect(&:price)
+  def subscription_view_price(sub)
+    (sub.price / 4.0) / view_count_for(sub)
   end
 
   def video_view
@@ -27,11 +30,15 @@ class VideoViewPrice
   end
 
   def subscriptions
-    video_views_in_range.collect(&:subscription)
+    Subscription.find subscription_ids
   end
 
-  def video_views_in_range
-    VideoView.where(video_id: video_ids, created_at: range)
+  def subscription_ids
+    VideoView.where(video_id: video_ids).collect(&:subscription_id)
+  end
+
+  def view_count_for(sub)
+    VideoView.where(subscription_id: sub.id).count
   end
 
   def video_ids
