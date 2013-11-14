@@ -63,25 +63,28 @@ module CreateData
   end
 
   def create_videos
-    Video.create(producer_id: 1, title: 'Pythagorean theorem - simple explanation')
-    Video.create(producer_id: 1, title: 'Rational functions')
-    Video.create(producer_id: 2, title: 'What is an integral?')
-    Video.create(producer_id: 2, title: 'Sine, cosine, and tangent')
-    Video.create(producer_id: 2, title: 'How to solve quadratic equations')
+    Video.create(producer: Producer.first, title: 'Pythagorean theorem - simple explanation')
+    Video.create(producer: Producer.first, title: 'Rational functions')
+    Video.create(producer: Producer.last,  title: 'What is an integral?')
+    Video.create(producer: Producer.last,  title: 'Sine, cosine, and tangent')
+    Video.create(producer: Producer.last,  title: 'How to solve quadratic equations')
   end
 
   def create_video_views
-    VideoView.create(user_id: 1, subscription_id: 1, video_id: 1, created_at: '10.01.2013')
-    VideoView.create(user_id: 3, subscription_id: 3, video_id: 4, created_at: '11.07.2013')
-    VideoView.create(user_id: 2, subscription_id: 2, video_id: 1, created_at: '01.08.2013')
-    VideoView.create(user_id: 2, subscription_id: 2, video_id: 5, created_at: '01.08.2013')
-    VideoView.create(user_id: 1, subscription_id: 1, video_id: 3, created_at: '01.08.2013')
-    VideoView.create(user_id: 1, subscription_id: 1, video_id: 2, created_at: '02.08.2013')
-    VideoView.create(user_id: 1, subscription_id: 1, video_id: 2, created_at: '09.08.2013')
-    VideoView.create(user_id: 2, subscription_id: 2, video_id: 3, created_at: '10.08.2013')
-    VideoView.create(user_id: 2, subscription_id: 2, video_id: 2, created_at: '10.08.2013')
-    VideoView.create(user_id: 3, subscription_id: 4, video_id: 5, created_at: '11.08.2013')
-    VideoView.create(user_id: 1, subscription_id: 1, video_id: 5, created_at: '31.08.2013')
-    VideoView.create(user_id: 1, subscription_id: 1, video_id: 1, created_at: '10.10.2013')
+    videos = Video.all.to_a
+    subscriptions = Subscription.all.to_a
+    users = User.all.to_a
+    VideoView.create(user: users[0], subscription: subscriptions[0], video: videos[0], created_at: '10.01.2013')
+    VideoView.create(user: users[2], subscription: subscriptions[2], video: videos[3], created_at: '11.07.2013')
+    VideoView.create(user: users[1], subscription: subscriptions[1], video: videos[0], created_at: '01.08.2013')
+    VideoView.create(user: users[1], subscription: subscriptions[1], video: videos[4], created_at: '01.08.2013')
+    VideoView.create(user: users[0], subscription: subscriptions[0], video: videos[2], created_at: '01.08.2013')
+    VideoView.create(user: users[0], subscription: subscriptions[0], video: videos[1], created_at: '02.08.2013')
+    VideoView.create(user: users[0], subscription: subscriptions[0], video: videos[1], created_at: '09.08.2013')
+    VideoView.create(user: users[1], subscription: subscriptions[1], video: videos[2], created_at: '10.08.2013')
+    VideoView.create(user: users[1], subscription: subscriptions[1], video: videos[1], created_at: '10.08.2013')
+    VideoView.create(user: users[2], subscription: subscriptions[3], video: videos[4], created_at: '11.08.2013')
+    VideoView.create(user: users[0], subscription: subscriptions[0], video: videos[4], created_at: '31.08.2013')
+    VideoView.create(user: users[0], subscription: subscriptions[0], video: videos[0], created_at: '10.10.2013')
   end
 end
