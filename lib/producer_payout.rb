@@ -22,7 +22,7 @@ class ProducerPayout
     amount = 0
 
     video_views.each do |vv|
-      amount += VideoViewPrice.new(vv.id, producer.id, range).get
+      amount += VideoViewPrice.new(vv.id, producer.id, range).value
     end
 
     return amount
