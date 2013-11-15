@@ -5,7 +5,8 @@ class ProducerPayout
 
   def initialize(producer, range)
     @producer = producer
-    @range    = range #enhance when necessary
+    @range    = range
+    # enhance_range
   end
 
   def calculate
@@ -41,8 +42,8 @@ class ProducerPayout
   end
 
   def enhance_range
-    start = range.first
-    stop = range.last
+    start = range.begin
+    stop = range.end
 
     stop += 1.day
     @range = start..stop
