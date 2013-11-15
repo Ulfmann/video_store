@@ -10,13 +10,9 @@ class ProducerPayout
   end
 
   def calculate
-    amount = 0
-    subscriptions.select do |sub|
-      amount += subscription_view_price(sub)
-      puts amount
-    end
-
-    return amount
+    subscriptions.collect{ |sub|
+      subscription_view_price(sub)
+    }.sum
   end
 
   def video_ids
