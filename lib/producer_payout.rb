@@ -5,7 +5,7 @@ class ProducerPayout
 
   def initialize(producer, range)
     @producer = producer
-    @range    = range
+    @range    = range #enhance when necessary
   end
 
   def calculate
@@ -38,5 +38,13 @@ class ProducerPayout
 
   def subscriptions
     Subscription.find subscription_ids
+  end
+
+  def enhance_range
+    start = range.first
+    stop = range.last
+
+    stop += 1.day
+    @range = start..stop
   end
 end
