@@ -1,11 +1,9 @@
 class VideoViewPrice
 
-  attr_reader :video_view_id
   attr_reader :producer_id
   attr_reader :range
 
-  def initialize(video_view_id, producer_id, range)
-    @video_view_id = video_view_id
+  def initialize(producer_id, range)
     @producer_id = producer_id
     @range = range
   end
@@ -23,10 +21,6 @@ class VideoViewPrice
 
   def subscription_view_price(sub)
     (sub.price / 4.0) / view_count_for(sub)
-  end
-
-  def video_view
-    @video_view ||= VideoView.find(video_view_id)
   end
 
   def subscriptions
