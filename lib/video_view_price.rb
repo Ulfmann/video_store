@@ -28,7 +28,7 @@ class VideoViewPrice
   end
 
   def subscription_ids
-    VideoView.where(video_id: video_ids).collect(&:subscription_id)
+    VideoView.where(video_id: video_ids, created_at: range).collect(&:subscription_id).uniq
   end
 
   def view_count_for(sub)
