@@ -3,7 +3,7 @@ load './lib/producer_payout.rb'
 
 describe ProducerPayout do
   let(:producer) { Producer.find_by_name('Steve') }
-  let(:range) { Date.parse('01.08.2013')..Date.parse('31.08.2013') }
+  let(:range) { Date.parse('01.08.2013')..Date.parse('31.08.2013') } #use 01.09.2013 for sql between scope
   let(:payout) { ProducerPayout.new(producer, range) }
 
   it 'knows producer and range' do
